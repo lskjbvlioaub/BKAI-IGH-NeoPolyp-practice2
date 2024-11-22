@@ -81,19 +81,10 @@ def validate(config, val_loader, model, criterion):
             input = input.to(DEVICE)
             target = target.to(DEVICE)
 
-            if config['deep_supervision']:
-                outputs = model(input)
-                loss = 0
-                dice = 0
-                for output in outputs:
-                    loss += criterion(output, target)
-                    dice += dice_score(outputs.clone().detach(), target)
-                loss /= len(outputs)
-                dice /= len(outputs)
-            else:
-                outputs = model(input)
-                loss = criterion(outputs, target)
-                dice = dice_score(outputs.clone().detach(), target)
+
+            outputs = model(input)
+            loss = criterion(outputs, target)
+            dice = dice_score(outputs.clone().detach(), target)
 
             avg_meters['loss'].update(loss.item(), input.size(0))
             avg_meters['dice'].update(dice.item(), input.size(0))
