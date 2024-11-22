@@ -190,7 +190,7 @@ def main():
 
     if use_wandb:
         wandb.login(
-            key="235d0f9a444cb6ae673e17762a2f186c5deab529",
+            key="34c6ba04b2b20a97743debee3dda601a31640975",
         )
         wandb.init(
             project="BKAI-IGH-NeoPolyp"
