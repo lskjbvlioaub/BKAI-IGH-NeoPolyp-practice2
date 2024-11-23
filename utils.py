@@ -62,7 +62,7 @@ class AverageMeter(object):
 def weights_init(model):
     if isinstance(model, nn.Linear):
         # Xavier Distribution
-        torch.nn.init.xavier_uniform_(model.weight)
+        torch.nn.init.xavier_uniform_(model.weight, gain=1.0)
 
 def load_model(model, optimizer, path):
     checkpoint = torch.load(path)
